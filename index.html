@@ -10,7 +10,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript">
     function Card(r, s) {
-      this.rank = r; 
+      this.rank = r;
       this.suit = s;
       this.toHTML = function() {
         return "<li class='card'>" + this.rank + "-" + this.suit + "</li>";
@@ -33,7 +33,22 @@
 
     }
 
+    var shuffle = function(m) {
+      var rand, $rand;
+
+      rand = Math.floor(Math.random() * m--);
+
+      $('li:eq(' + m + ')').
+        after($('li:eq(' + rand + ')')).
+        insertBefore($('li:eq(' + rand + ')'))
+
+      if(m) {
+        setTimeout(shuffle, 100, m);
+      }
+    };
+
     var deck = new Deck();
+    shuffle($('.cards').length);
   </script>
 </body>
 </html>
